@@ -3,6 +3,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <semaphore.h>
+typedef struct Queue {
+    sem_t isBusy;
+    sem_t filledSpace;
+    sem_t emptySpace;
+    char **queueLine;
+    //a count of the number of strings enqueued on this queue
+    int enqueueCount;
+    //a count of the number of strings dequeued on this queue
+    int dequeueCount;
+    //The amount of elapsed (wallclock) time that a thread spent trying to do an enqueue
+    int enqueueTime;
+    //The amount of elapsed (wallclock) time that a thread spent trying to do an dequeue
+    int dequeueTime;
+} Queue;
 
 /*
  * Allocate and initialize a new Queue struct in the mem

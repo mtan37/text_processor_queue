@@ -1,12 +1,16 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "queue.h"
 const int BUFFS = 100;
+
 /*
  * read input line by line from standard input
  * pass the result to the queue
  */
-int startRead(Queue queue){
-    char * buff[BUFFS];   
+void startRead(Queue queue){
+    char buff[BUFFS];   
     //keep reading until the end of the line 
-    while(fgets(cahr *buff, BUFFS , stdin)!=NULL){
+    while(fgets(buff, BUFFS , stdin)!=NULL){
         int inputLength = strlen(buff);
         //check if the last character is the new line symbol
         //if the new line char is included, pass the string to queue
@@ -18,7 +22,6 @@ int startRead(Queue queue){
         else{
             //do whatever you need to do....
         }
-        printf("");//DELETE
     }
 }
 
