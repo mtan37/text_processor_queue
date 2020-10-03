@@ -7,15 +7,22 @@
 void munch1Read(Queue *q1, Queue *q2){
     //while the queue didn't pass in NULL(the end of stdin)
     char *input = DequeueString(q1);
-    while(input != NULL){
-        //TODO loop through the char in the input
+    while(NULL != input){
+        //loop through the char in the input
+        int inputLen = strlen(input);
+        for(int i = 0; i < inputLen;i++){
             //if the curr char is a space, replace it with '*'
-            //TODO
-            //enqueue the modified string to q2
-            //TODO
+            if(' ' == input[i]){
+                input[i] = '*';
+            } 
+        } 
+        //enqueue the modified string to q2
+        EnqueueString(q2, input);
+        //take the next input from q1
         input = DequeueString(q1);
     }    
-    //enqueue NULL to q2 TODO
+    //enqueue NULL to q2
+    EnqueueString(q2, NULL);
 }
 
 void *munch1ReadWrapper(void *data){

@@ -21,21 +21,21 @@ int main(){
     munch2Args->queue1 = munch1ToMunch2;
     munch2Args->queue2 = munch2ToWriter;
     //create four new threads
-        //create the reader
-        pthread_t reader; 
-        pthread_create(&reader, NULL, startReadWrapper,&readerToMunch1);
-        //create munch1
-        pthread_t munch1;
-        pthread_create(&munch1, NULL, munch1ReadWrapper,munch1Args);
-        //create munch2
-        pthread_t munch2;
-        pthread_create(&munch2, NULL, munch2ReadWrapper,munch2Args);
-        //create writer
-        pthread_t writer;
-        pthread_create(&writer, NULL, printOutputWrapper,&munch2ToWriter);
-        //wait for those threads to finish
-        pthread_join(reader, NULL);
-        pthread_join(munch1, NULL);
-        pthread_join(munch2, NULL);
-        pthread_join(writer, NULL);
+    //create the reader
+    pthread_t reader; 
+    pthread_create(&reader, NULL, startReadWrapper,&readerToMunch1);
+    //create munch1
+    pthread_t munch1;
+    pthread_create(&munch1, NULL, munch1ReadWrapper,munch1Args);
+    //create munch2
+    pthread_t munch2;
+    pthread_create(&munch2, NULL, munch2ReadWrapper,munch2Args);
+    //create writer
+    pthread_t writer;
+    pthread_create(&writer, NULL, printOutputWrapper,&munch2ToWriter);
+    //wait for those threads to finish
+    pthread_join(reader, NULL);
+    pthread_join(munch1, NULL);
+    pthread_join(munch2, NULL);
+    pthread_join(writer, NULL);
 }

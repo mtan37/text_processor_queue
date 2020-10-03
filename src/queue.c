@@ -11,9 +11,9 @@ Queue *CreateStringQueue(int size){
     queue->enqueueTime = 0;
     queue->dequeueTime = 0;
     queue->queueLine = calloc(size,sizeof(char*));
-    sem_init(queue->isBusy, 0, 1);
-    sem_init(queue->filledSpace, 0, 0);
-    sem_init(queue->emptySpace, 0, 10);
+    sem_init(&(queue->isBusy), 0, 1);
+    sem_init(&(queue->filledSpace), 0, 0);
+    sem_init(&(queue->emptySpace), 0, 10);
     return queue;
 }
 
@@ -25,15 +25,15 @@ Queue *CreateStringQueue(int size){
 void EnqueueString(Queue *q, char *string){
     //start a time count enqueueTime TODO
     //wait if the queue is full(has no empty space)
-    sem_wait(q->emptySpace);
+    sem_wait(&(q->emptySpace));
     //wait if there is another process trying to enqueue or dequeue
-    sem_wait(q->isBusy);
+    sem_wait(&(q->isBusy));
     //critical section
     //TODO 
     //increment enqueueCount
     //record enqueueTime
-    sem_post(q->isBusy);
-    sem_post(q->filledSpace); 
+    sem_post(&(q->isBusy));
+    sem_post(&(q->filledSpace)); 
 }
 
 /*
@@ -43,15 +43,15 @@ void EnqueueString(Queue *q, char *string){
 char *DequeueString(Queue *q){
     //start a time count dequeueTime TODO
     //check if the queue is empty
-    sem_wait(q->filledSpace);
+    sem_wait(&(q->filledSpace));
     //wait if there is another process trying to enqueue or dequeue
-    sem_wait(q->isBusy);
+    sem_wait(&(q->isBusy));
     //critical section
     //TODO
     //increment dequeueCount
     //record dequeueTime
-    sem_post(q->isBusy);
-    sem_post(q->emptySpace); 
+    sem_post(&(q->isBusy));
+    sem_post(&(q->emptySpace)); 
     return NULL;//TODO
 }
 

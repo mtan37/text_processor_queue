@@ -5,9 +5,9 @@
 #include <string.h>
 #include <semaphore.h>
 typedef struct Queue {
-    sem_t *isBusy;
-    sem_t *filledSpace;
-    sem_t *emptySpace;
+    sem_t isBusy;
+    sem_t filledSpace;
+    sem_t emptySpace;
     char **queueLine;
     //a count of the number of strings enqueued on this queue
     int enqueueCount;
