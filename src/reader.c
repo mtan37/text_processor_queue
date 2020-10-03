@@ -26,7 +26,7 @@ void startRead(Queue *queue){
         //if the input line exceeds the buffer size
         else{
             //print out a warning for the overflown line
-            printf("WARNING: Line is truncated for the buffer size");
+            fprintf(stderr,"Line is truncated for the buffer size");
             //allocate mem for the string(reserve space for \0)
             char *currS = calloc(1,inputLength+1);
             strncpy(currS,buff,inputLength+1);
