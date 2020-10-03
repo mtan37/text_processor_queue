@@ -38,4 +38,11 @@ int main(){
     pthread_join(munch1, NULL);
     pthread_join(munch2, NULL);
     pthread_join(writer, NULL);
+    //print the queue stats
+    printf("q1\n");//may want to think of a different name... TODO
+    PrintQueueStats(readerToMunch1);
+    printf("q2\n");
+    PrintQueueStats(munch1ToMunch2); 
+    printf("q3\n");
+    PrintQueueStats(munch2ToWriter);
 }
