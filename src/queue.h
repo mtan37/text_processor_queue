@@ -1,13 +1,13 @@
-#ifndef MEMREADER_H
-#define MEMREADER_H
+#ifndef QUEUE_H
+#define QUEUE_H
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <semaphore.h>
 typedef struct Queue {
-    sem_t isBusy;
-    sem_t filledSpace;
-    sem_t emptySpace;
+    sem_t *isBusy;
+    sem_t *filledSpace;
+    sem_t *emptySpace;
     char **queueLine;
     //a count of the number of strings enqueued on this queue
     int enqueueCount;

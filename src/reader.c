@@ -1,13 +1,12 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "queue.h"
+#include "reader.h"
 const int BUFFS = 100;
+
 
 /*
  * read input line by line from standard input
  * pass the result to the queue
  */
-void startRead(Queue queue){
+void startRead(Queue *queue){
     char buff[BUFFS];   
     //keep reading until the end of the line 
     while(fgets(buff, BUFFS , stdin)!=NULL){
@@ -23,5 +22,11 @@ void startRead(Queue queue){
             //do whatever you need to do....
         }
     }
+    //TODO queue a NULL string as the last input to indicate completion
 }
 
+void *startReadWrapper(void *data){
+    Queue *queue = (Queue *)data;
+    startRead(queue);
+    pthread_exit(NULL);
+}
