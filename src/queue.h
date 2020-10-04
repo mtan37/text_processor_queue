@@ -9,6 +9,9 @@ typedef struct Queue {
     sem_t *filledSpace;
     sem_t *emptySpace;
     char **queueLine;
+    int size;
+    int head;
+    int end;
     //a count of the number of strings enqueued on this queue
     int enqueueCount;
     //a count of the number of strings dequeued on this queue
