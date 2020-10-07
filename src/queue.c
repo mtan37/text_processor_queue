@@ -1,4 +1,6 @@
 #include "queue.h"
+#include <stdio.h> 
+#include <sys/time.h>
 
 /*
  * Allocate and initialize a new Queue struct in the mem
@@ -34,8 +36,11 @@ Queue *CreateStringQueue(int size) {
  */
 void EnqueueString(Queue *q, char *string) {
     //start a time count enqueueTime
-    while (q->size >= 10) {
-	    q->enqueueTime++;
+    int startTime, endTime;
+    struct timeval currentTime; //sec is seconds, usec is microseconds - declared in time.h
+    if (q->size >= 10) {
+	    gettimeofday(&currentTime, NULL);
+    	    startTime = (currentTime.tv_sec * 1000) + (currentTime.tv_usec / 1000);
     }
     //wait if the queue is full(has no empty space)
     sem_wait(q->emptySpace);
@@ -48,6 +53,10 @@ void EnqueueString(Queue *q, char *string) {
     //increment enqueueCount
     q->enqueueCount++;
     //record enqueueTime
+    gettimeofday(&currentTime, NULL);
+    endTime = (currentTime.tv_sec * 1000) + (currentTime.tv_usec / 1000);
+    q->enqueueTime = endTime - startTime;
+	
     sem_post(q->isBusy);
     sem_post(q->filledSpace);
 }
@@ -58,8 +67,10 @@ void EnqueueString(Queue *q, char *string) {
  */
 char *DequeueString(Queue *q) {
     //start a time count dequeueTime
-    while (q->size <= 0) {
-	    q->dequeueTime++;
+    int startTime, endTime;
+    if (q->size <= 0) {
+	    gettimeofday(&currentTime, NULL);
+    	    startTime = (currentTime.tv_sec * 1000) + (currentTime.tv_usec / 1000);
     }
     //check if the queue is empty
     sem_wait(q->filledSpace);
@@ -73,6 +84,10 @@ char *DequeueString(Queue *q) {
     //increment dequeueCount
     q->dequeueCount++;
     //record dequeueTime
+    gettimeofday(&currentTime, NULL);
+    endTime = (currentTime.tv_sec * 1000) + (currentTime.tv_usec / 1000);
+    q->dequeueTime = endTime - startTime
+	
     sem_post(q->isBusy);
     sem_post(q->emptySpace); 
     return string;
