@@ -14,7 +14,7 @@ void printOutput(Queue *queue){
         input = DequeueString(queue);
     }
     //no more input
-    printf("INFO: Numer of string processed: %d", inputCount);
+    printf("INFO: Number of string processed: %d\n", inputCount);
 }
 
 void *printOutputWrapper(void *data){

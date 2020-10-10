@@ -5,9 +5,10 @@
 #include <string.h>
 #include <semaphore.h>
 typedef struct Queue {
-    sem_t isBusy;
-    sem_t filledSpace;
-    sem_t emptySpace;
+    sem_t *isBusy;
+    sem_t *filledSpace;
+    sem_t *emptySpace;
+    sem_t *recordTime;
     char **queueLine;
     int size;
     int head;

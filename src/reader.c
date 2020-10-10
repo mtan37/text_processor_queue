@@ -6,6 +6,8 @@ const int BUFFS = 100;
  * pass the result to the queue
  */
 void startRead(Queue *queue){
+    //DELETE
+    printf("status of queue for reader: queue end: %d\n", queue->end);
     char buff[BUFFS];   
     printf("startRead called\n");//DELETE
     //keep reading until the end of the line 
