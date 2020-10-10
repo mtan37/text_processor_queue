@@ -14,7 +14,6 @@ void startRead(Queue *queue){
     //keep reading until the end of the line 
     while(fgets(buff, BUFFS , stdin)!=NULL){
         int inputLength = strlen(buff);
-        printf("input length for stirng: %d\n", inputLength);
         //check if the last character is the new line symbol
         if(buff[inputLength - 1] == '\n'){
             //replace the new line with null symbol
@@ -24,9 +23,19 @@ void startRead(Queue *queue){
             strncpy(currS,buff,inputLength);
             //pass the string to the queue
             EnqueueString(queue,currS);
+        }//if there are multiple null char in the same line
+        else if(inputLength<(BUFFS - 1)){
+            //allocate mem for the string(reserve space for \0)
+            //ignore all the char after the first null
+            char *currS = calloc_w(1,inputLength);
+            strncpy(currS,buff,inputLength);
+            //pass the string to the queue
+            EnqueueString(queue,currS);
+            
         }
-        //if the input line exceeds the buffer size
-        else{
+        //if the input line does exceeds the buffer size,or something else
+        else
+        {
             //print out a warning for the overflown line
             fprintf(stderr,"Line is truncated for the buffer size\n");
             //allocate mem for the string(reserve space for \0)

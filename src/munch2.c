@@ -1,6 +1,7 @@
 #include <string.h>
 #include <pthread.h>
 #include <ctype.h>
+#include <stdio.h>//DELETE 
 #include "munch2.h"
 
 
@@ -17,6 +18,7 @@ void munch2Read(Queue *q1, Queue *q2){
                 input[i] = toupper(currChar);
             }
         }
+        printf("after munch2: %s\n", input);
         //enqueue the modified string to q2
         EnqueueString(q2,input);
         //take the next input from the queue
