@@ -1,26 +1,23 @@
-#include "queue.h"
-#include <stdio.h> 
+#include <string.h>
 #include <sys/time.h>
+#include "queue.h"
+#include "util.h"
 
 /*
  * Allocate and initialize a new Queue struct in the mem
  * the size of the queue equals to the pass in size
  */
 Queue *CreateStringQueue(int size) {
-    Queue *queue = calloc(1, sizeof(Queue));
-    queue->recordTime = calloc(1,sizeof(sem_t));
-    queue->isBusy = calloc(1,sizeof(sem_t));
-    queue->filledSpace = calloc(1,sizeof(sem_t));
-    queue->emptySpace = calloc(1,sizeof(sem_t));
-    if (queue == NULL) {
-	    printf("Problem allocating queue.\n");
-	    exit(1);
-    }
+    Queue *queue = calloc_w(1, sizeof(Queue));
+    queue->recordTime = calloc_w(1,sizeof(sem_t));
+    queue->isBusy = calloc_w(1,sizeof(sem_t));
+    queue->filledSpace = calloc_w(1,sizeof(sem_t));
+    queue->emptySpace = calloc_w(1,sizeof(sem_t));
     queue->enqueueCount = 0;
     queue->dequeueCount = 0;
     queue->enqueueTime = 0;
     queue->dequeueTime = 0;
-    queue->queueLine = calloc(size,sizeof(char*));
+    queue->queueLine = calloc_w(size,sizeof(char*));
     sem_init(queue->recordTime,0,1);
     sem_init(queue->isBusy, 0, 1);
     sem_init(queue->filledSpace, 0, 0);

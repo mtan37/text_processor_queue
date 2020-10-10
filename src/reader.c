@@ -1,3 +1,7 @@
+#include <pthread.h>
+#include <string.h>
+#include "queue.h"
+#include "util.h"
 #include "reader.h"
 const int BUFFS = 100;
 
@@ -19,7 +23,7 @@ void startRead(Queue *queue){
             //replace the new line with null symbol
             buff[inputLength - 1] = '\0';
             //allocate mem for the string(reserve space for \0)
-            char *currS = calloc(1,inputLength);
+            char *currS = calloc_w(1,inputLength);
             strncpy(currS,buff,inputLength);
             printf("Line: %s\n",currS);//DELETE
             //pass the string to the queue
@@ -30,7 +34,7 @@ void startRead(Queue *queue){
             //print out a warning for the overflown line
             fprintf(stderr,"Line is truncated for the buffer size");
             //allocate mem for the string(reserve space for \0)
-            char *currS = calloc(1,inputLength+1);
+            char *currS = calloc_w(1,inputLength+1);
             strncpy(currS,buff,inputLength+1);
             printf("Line: %s\n",currS);//DELETE
             //pass the string to the queue

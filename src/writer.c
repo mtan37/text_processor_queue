@@ -1,3 +1,7 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+#include "queue.h"
 #include "writer.h"
 
 void printOutput(Queue *queue){
@@ -7,7 +11,7 @@ void printOutput(Queue *queue){
     while(input != NULL){
         inputCount++;
         //print the line
-        printf("%s\n",input);
+        printf("Output number %d: %s\n",inputCount, input);
         //free the input
         free(input);
         //take the next input from the queue
