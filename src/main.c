@@ -9,8 +9,6 @@ int main(){
     Queue *readerToMunch1 = CreateStringQueue(10);
     Queue *munch1ToMunch2 = CreateStringQueue(10);
     Queue *munch2ToWriter = CreateStringQueue(10);  
-    //DELETE
-    printf("status of queues: queue end: %d\n", readerToMunch1->end);
     //initialize args
     Munch1Params *munch1Args = calloc_w(1,sizeof(Munch1Params));
     munch1Args->queue1 = readerToMunch1;
@@ -37,10 +35,10 @@ int main(){
     pthread_join_w(munch2, NULL);
     pthread_join_w(writer, NULL);
     //print the queue stats
-    printf("q1 status: \n");//may want to think of a different name... TODO
+    printf("==========Reader->Munch1 queue status==========\n");//may want to think of a different name... TODO
     PrintQueueStats(readerToMunch1);
-    printf("q2 status: \n");
+    printf("==========Munch1->Munch2 queue status==========\n");
     PrintQueueStats(munch1ToMunch2); 
-    printf("q3 status: \n");
+    printf("==========Munch2->Writer queue status==========\n");
     PrintQueueStats(munch2ToWriter);
 }

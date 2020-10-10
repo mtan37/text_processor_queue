@@ -40,9 +40,6 @@ void EnqueueString(Queue *q, char *string) {
     gettimeofday(&currentTime, NULL);
     //in sec
     startTime = (currentTime.tv_sec) + (currentTime.tv_usec / 1e6);
-	printf("check currentTime: sec: %ld, usec: %ld, startTime: %f\n", 
-        currentTime.tv_sec, currentTime.tv_usec,startTime);
-    printf("enqueueTime: %f\n", q->enqueueTime);//DELETE
     sem_wait(q->emptySpace);
     //wait if there is another process trying to enqueue or dequeue
     sem_wait(q->isBusy);
@@ -60,9 +57,6 @@ void EnqueueString(Queue *q, char *string) {
     gettimeofday(&currentTime, NULL);
     endTime = (currentTime.tv_sec) + (currentTime.tv_usec / 1e6);
     q->enqueueTime += (endTime - startTime);
-	printf("enqueue start time: %f\n", startTime);//DELETE
-	printf("dequeue end time: %f\n", endTime);//DELETE
-	printf("curr enqueueTime: %f\n", q->enqueueTime);//DELETE
     sem_post(q->recordTime);
 }
 
@@ -82,8 +76,6 @@ char *DequeueString(Queue *q) {
     sem_wait(q->isBusy);
     //critical section
 	char *string = (q->queueLine)[q->head];
-    //DELETE
-    printf("string dequeued at index: %d, value: %s\n", q->head,string);
     q->head = (q->head + 1) % 10;
     //increment dequeueCount
     q->dequeueCount++;
@@ -95,7 +87,6 @@ char *DequeueString(Queue *q) {
     gettimeofday(&currentTime, NULL);
     endTime = (currentTime.tv_sec) + (currentTime.tv_usec / 1e6);
     q->dequeueTime += (endTime - startTime);
-	printf("curr dequeueTime: %f\n", q->dequeueTime);//DELETE
     sem_post(q->recordTime);
 	
     return string;

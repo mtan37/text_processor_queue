@@ -10,14 +10,11 @@ const int BUFFS = 100;
  * pass the result to the queue
  */
 void startRead(Queue *queue){
-    //DELETE
-    printf("status of queue for reader: queue end: %d\n", queue->end);
     char buff[BUFFS];   
-    printf("startRead called\n");//DELETE
     //keep reading until the end of the line 
     while(fgets(buff, BUFFS , stdin)!=NULL){
-        printf("start reading\n");//DELETE
         int inputLength = strlen(buff);
+        printf("input length for stirng: %d\n", inputLength);
         //check if the last character is the new line symbol
         if(buff[inputLength - 1] == '\n'){
             //replace the new line with null symbol
@@ -25,26 +22,27 @@ void startRead(Queue *queue){
             //allocate mem for the string(reserve space for \0)
             char *currS = calloc_w(1,inputLength);
             strncpy(currS,buff,inputLength);
-            printf("Line: %s\n",currS);//DELETE
             //pass the string to the queue
             EnqueueString(queue,currS);
         }
         //if the input line exceeds the buffer size
         else{
             //print out a warning for the overflown line
-            fprintf(stderr,"Line is truncated for the buffer size");
+            fprintf(stderr,"Line is truncated for the buffer size\n");
             //allocate mem for the string(reserve space for \0)
             char *currS = calloc_w(1,inputLength+1);
             strncpy(currS,buff,inputLength+1);
-            printf("Line: %s\n",currS);//DELETE
             //pass the string to the queue
             EnqueueString(queue,currS);
-                        
+            //flush the rest of the line
+            char c = getchar();
+            while ('\n' != c && EOF !=c){
+                c =getchar();
+            }                        
         }
     }
     //queue a NULL string as the last input to indicate completion
     EnqueueString(queue,NULL);
-    printf("end of the read\n");
 }
 
 void *startReadWrapper(void *data){
