@@ -18,9 +18,9 @@ typedef struct Queue {
     //a count of the number of strings dequeued on this queue
     int dequeueCount;
     //The amount of elapsed (wallclock) time that a thread spent trying to do an enqueue
-    int enqueueTime;
+    double enqueueTime;
     //The amount of elapsed (wallclock) time that a thread spent trying to do an dequeue
-    int dequeueTime;
+    double dequeueTime;
 } Queue;
 
 /*
