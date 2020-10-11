@@ -35,7 +35,7 @@ int main(){
     pthread_join_w(munch2, NULL);
     pthread_join_w(writer, NULL);
     //print the queue stats
-    printf("==========Reader->Munch1 queue status==========\n");//may want to think of a different name... TODO
+    printf("==========Reader->Munch1 queue status==========\n");
     PrintQueueStats(readerToMunch1);
     printf("==========Munch1->Munch2 queue status==========\n");
     PrintQueueStats(munch1ToMunch2); 

@@ -24,7 +24,6 @@ typedef struct Queue {
  * Allocate and initialize a new Queue struct in the mem
  * the size of the queue equals to the pass in size
  */
-//DELET: test size is 10;
 Queue *CreateStringQueue(int size);
 
 /*
