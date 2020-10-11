@@ -14,7 +14,7 @@ void munch2Read(Queue *q1, Queue *q2){
         for(int i = 0; i < inputLen;i++){
             char currChar = input[i];
             //if the curr char is a lower case letter, capitalize it
-            if(1 == islower(currChar)){
+            if(0 != islower(currChar)){
                 input[i] = toupper(currChar);
             }
         }
