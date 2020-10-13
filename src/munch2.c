@@ -3,7 +3,10 @@
 #include <ctype.h>
 #include "munch2.h"
 
-
+/*
+ * read input from q1. Convert all lower case char in input to capitalized
+ * letters, then pass it to q2
+ */
 void munch2Read(Queue *q1, Queue *q2){
     //while the queue didn't pass in NULL
     char *input = DequeueString(q1);
@@ -26,6 +29,9 @@ void munch2Read(Queue *q1, Queue *q2){
     EnqueueString(q2,NULL);
 }
 
+/*
+ * Function wrapper for munch2Read
+ */
 void *munch2ReadWrapper(void *data){
     Munch2Params *queues = (Munch2Params *)data;
     munch2Read(queues->queue1,queues->queue2);
