@@ -1,3 +1,4 @@
+// Authors: Marvin Tan (marvin.tan@wisc.edu), Joseph Martin (jrmartin4@wisc.edu)
 #include <string.h>
 #include <pthread.h>
 #include "munch1.h"
