@@ -1,3 +1,4 @@
+// Authors: Marvin Tan (marvin.tan@wisc.edu), Joseph Martin (jrmartin4@wisc.edu)
 #ifndef MUNCH2_H
 #define MUNCH2_H
 #include "queue.h"
