@@ -49,7 +49,6 @@ int main(){
     pthread_join_w(munch1, NULL);
     pthread_join_w(munch2, NULL);
     pthread_join_w(writer, NULL);
-    //free statements cause seg fault here (1/2)
     //print the queue stats
     printf("==========Reader->Munch1 queue status==========\n");
     PrintQueueStats(readerToMunch1);
@@ -57,7 +56,6 @@ int main(){
     PrintQueueStats(munch1ToMunch2); 
     printf("==========Munch2->Writer queue status==========\n");
     PrintQueueStats(munch2ToWriter);
-    //free statements do not cause seg fault here (2/2)
     freeQueue(readerToMunch1);
     freeQueue(munch1ToMunch2);
     freeQueue(munch2ToWriter);
