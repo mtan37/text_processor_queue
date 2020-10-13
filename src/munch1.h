@@ -1,4 +1,4 @@
-// Authors: Marvin Tan (marvin.tan@wisc.edu), Joseph Martin (jrmartin4@wisc.edu)
+// Authors: Marvin Tan(mtan37) (marvin.tan@wisc.edu), Joseph Martin(jrmartin4) (jrmartin4@wisc.edu)
 #ifndef MUNCH1_H
 #define MUNCH1_H
 #include "queue.h"
