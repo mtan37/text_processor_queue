@@ -1,5 +1,7 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "util.h"
-
+//defining error check function wrappers for library functions
 /*
  * error handling for calloc
  */

@@ -4,6 +4,9 @@
 #include "queue.h"
 #include "writer.h"
 
+/*
+ * Get input from queue and print out the input
+ */
 void printOutput(Queue *queue){
     //while queue doesn't return NULL
     char *input = DequeueString(queue);
@@ -22,6 +25,9 @@ void printOutput(Queue *queue){
     printf("Number of strings processed: %d\n", inputCount);
 }
 
+/*
+ * Function wrapper for printOutput
+ */
 void *printOutputWrapper(void *data){
     Queue *queue = (Queue *)data;
     printOutput(queue);

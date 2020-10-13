@@ -26,7 +26,9 @@ void munch1Read(Queue *q1, Queue *q2){
     //enqueue NULL to q2
     EnqueueString(q2, NULL);
 }
-
+/*
+ * Wrapper for the munch1Read function
+ */
 void *munch1ReadWrapper(void *data){
     Munch1Params *queues = (Munch1Params *)data;
     munch1Read(queues->queue1, queues->queue2);

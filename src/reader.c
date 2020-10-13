@@ -1,5 +1,7 @@
 #include <pthread.h>
 #include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "queue.h"
 #include "util.h"
 #include "reader.h"
@@ -53,7 +55,9 @@ void startRead(Queue *queue){
     //queue a NULL string as the last input to indicate completion
     EnqueueString(queue,NULL);
 }
-
+/*
+ * Function wrapper for startRead
+ */
 void *startReadWrapper(void *data){
     Queue *queue = (Queue *)data;
     startRead(queue);
