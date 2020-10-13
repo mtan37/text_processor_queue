@@ -1,3 +1,4 @@
+// Authors: Marvin Tan (marvin.tan@wisc.edu), Joseph Martin (jrmartin4@wisc.edu)
 #ifndef QUEUE_H
 #define QUEUE_H
 #include <semaphore.h>
