@@ -34,3 +34,11 @@ void pthread_join_w(pthread_t thread, void **retval){
         exit(1);
     }
 }
+
+/*
+ * only free the ptr if it is not equal to NULL
+ */
+void free_w(void *ptr){
+    if(NULL != ptr)
+        free(ptr);
+}

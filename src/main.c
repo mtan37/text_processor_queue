@@ -3,6 +3,19 @@
 #include "munch2.h"
 #include "writer.h"
 #include "util.h"
+/*
+ * Free struct Queue
+ */
+void freeQueue(Queue *queue){
+    if(NULL != queue){
+        free_w(queue->recordTime);
+        free_w(queue->isBusy);
+        free_w(queue->filledSpace);
+        free_w(queue->emptySpace);
+        free_w(queue->queueLine);
+        free_w(queue);
+    }
+}
 int main(){
     //create the three queues
     //use size 10 for testing purposes
@@ -43,9 +56,9 @@ int main(){
     printf("==========Munch2->Writer queue status==========\n");
     PrintQueueStats(munch2ToWriter);
     //free statements do not cause seg fault here (2/2)
-    free(readerToMunch1);
-    free(munch1ToMunch2);
-    free(munch2ToWriter);
-    free(munch1Args);
-    free(munch2Args);
+    freeQueue(readerToMunch1);
+    freeQueue(munch1ToMunch2);
+    freeQueue(munch2ToWriter);
+    free_w(munch1Args);
+    free_w(munch2Args);
 }
